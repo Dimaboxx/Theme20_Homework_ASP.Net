@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<title>@ViewBag.Title</title>*@
+    <link rel="stylesheet" href="~/css/Styles.css" />
+    <meta charset="utf-8" lang="ru" />
+</head>
+<body>
+    <div class="Container">
+        <header>
+            <div>
+                <h1 class="header">Игра в Палочки</h1>
+            </div>
+            @*<a asp-></a>*@
+        </header>
+        <div>
+            @RenderBody()
+        </div>
+        <footer class="footer">
+            client ip   @Context.Request.HttpContext.Connection.RemoteIpAddress
+        </footer>
+    </div>
+
+</body>
+</html>

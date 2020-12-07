@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <form asp-area="" asp-controller="Game" asp-action="NewGame"  method="post" class="newGame-form">
+        <label>
+            Значение для запуска игры
+            <input type="range" name="startvalue" min="21" max="100" value=@(Game.defaultStartValue) onchange="document.getElementById('startvalue').innerHTML = this.value;"/>
+            <span id="startvalue">50</span>
+        </label>
+        
+        <label>
+            Значение для шага игры
+            <input type="range" name="step" min="1" max="9" value=@(Game.defaultStepValue) onchange="document.getElementById('step').innerHTML = this.value;" />
+            <span id="step">5</span>
+        </label>
+        <input type="text" name="name" value="" placeholder="Введите имя" />
+        <input type="submit" />
+    </form>
+}

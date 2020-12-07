@@ -1,0 +1,35 @@
+﻿@{Game game = ViewData["Game"] as Game; }
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Игровая страница</title>
+    <link rel="stylesheet" href="~/css/Styles.css" />
+    <meta charset="utf-8" lang="ru" />
+    <style></style>
+</head>
+<body>
+    <main>
+        <div class="Container">
+
+            @*<a asp-area="" asp-controller="Result" asp-action="GameOver">Результат</a>*@
+            <form asp-area="" asp-controller="Game" asp-action="Index" method="post">
+                <input type="range" name="nextstep" min="1" max="9" value="5" onchange="document.getElementById('stepvalue').innerHTML = this.value;" />
+                <div id="stepvalue">5</div>
+                <input type="submit" />
+            </form>
+            <div class="game-example">
+                @{
+                    if(game != null)
+                    for (int i = 0; i < game.Count; i++)
+                    {
+                    <div class="game-item"></div>
+
+                    }
+                }
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+@{
+}
