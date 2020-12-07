@@ -10,13 +10,14 @@
 <body>
     <main>
         <div class="Container">
-
+            <p>@game.CurrentUser</p>
             @*<a asp-area="" asp-controller="Result" asp-action="GameOver">Результат</a>*@
             <form asp-area="" asp-controller="Game" asp-action="Index" method="post">
-                <input type="range" name="nextstep" min="1" max="9" value="5" onchange="document.getElementById('stepvalue').innerHTML = this.value;" />
-                <div id="stepvalue">5</div>
+                <input type="range" name="nextstep" min="1" max=@(game.MaxStep-1) value=@(game.MaxStep/2) onchange="document.getElementById('stepvalue').innerHTML = this.value;" />
+                <div id="stepvalue">@(game.MaxStep/2)</div>
                 <input type="submit" />
             </form>
+            <p>Текущий счет @(game.Count)</p>
             <div class="game-example">
                 @{
                     if(game != null)

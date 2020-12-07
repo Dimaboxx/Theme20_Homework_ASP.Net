@@ -10,7 +10,7 @@ namespace Theme_20_Homework_fromEmpty
 
         public static int defaultStartValue;
         public static int defaultStepValue;
-        static string BotName;
+        public static string BotName;
 
         static Game()
         {
@@ -40,6 +40,8 @@ namespace Theme_20_Homework_fromEmpty
             {
                 users.Add(BotName);
             }
+            currentUserID = 0;
+            CurrentUser = users[currentUserID];
         }
 
         public Game() { }
@@ -57,12 +59,12 @@ namespace Theme_20_Homework_fromEmpty
                 }
                 
             }
- 
+          //  nextStep();
         }
 
-        private void nextStep()
+        public void nextUser()
         {
-            if (currentUserID < users.Count)
+            if (currentUserID < users.Count-1)
             {
                 currentUserID++;
             }
@@ -72,21 +74,26 @@ namespace Theme_20_Homework_fromEmpty
             }
 
             CurrentUser = users[currentUserID];
-            if(CurrentUser == BotName)
-            {
-                Step(autostep());
-            }
+            //if(CurrentUser == BotName)
+            //{
+            //    Step(autostep());
+            //}
         }
 
-        private int autostep()
+        public int Botstep()
         {
             int result;
-            if (Count <= MaxStep)
-                result = MaxStep;
-            else if (Count % MaxStep != 0)
-                result = Count - (Count / MaxStep) * MaxStep - 1;
+            if (Count <= MaxStep-1)
+                result = Count;
+            else if (Count % (MaxStep-1) != 0)
+            {
+
+                result = Count - (Count / (MaxStep-1)) * (MaxStep-1) - 1;
+                if (result == 0)
+                    result = MaxStep - 1;
+            }
             else 
-                result = (new Random()).Next(MaxStep);
+                result = (new Random()).Next(1,MaxStep);
             return result;
         }
     }

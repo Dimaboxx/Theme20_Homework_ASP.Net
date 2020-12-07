@@ -39,7 +39,7 @@ namespace Theme_20_Homework_fromEmpty
         {
             _logger.LogInformation($"startvalue : {startvalue} step : {step}");
 
-            _GameCenter.AddGame(new Game(int.Parse(step), int.Parse(startvalue), name));
+            _GameCenter.AddGame(new Game(int.Parse(step)+1, int.Parse(startvalue), name));
             return RedirectToAction("Index", "Game");
         }
  
@@ -49,12 +49,22 @@ namespace Theme_20_Homework_fromEmpty
             Game currentGame = _GameCenter.Game();
             if (!currentGame.GameOver)
             {
+                if(currentGame.CurrentUser == Game.BotName)
+                {
+                     currentGame.Step(currentGame.Botstep());
+                    currentGame.nextUser();
+                    return Redirect("~/Game/Index");
+                       // return Redirect("~/Result/GameOver");
+                }
+
+
+
                 ViewData["Game"] = currentGame;
                 return View();
 
             }
             else
-                return Redirect("~/Result/GameOver!");
+                return Redirect("~/Result/GameOver");
         }
 
         [HttpPost]
@@ -64,6 +74,7 @@ namespace Theme_20_Homework_fromEmpty
             game.Step(int.Parse(nextstep));
             if (game.GameOver)
                 return Redirect("~/Result/WinerPage");
+            game.nextUser();
             return Redirect("~/Game/Index");
         }
 
