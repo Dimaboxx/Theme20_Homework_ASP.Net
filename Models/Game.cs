@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Theme_20_Homework_fromEmpty.Models;
 
 namespace Theme_20_Homework_fromEmpty
 {
@@ -10,42 +11,52 @@ namespace Theme_20_Homework_fromEmpty
 
         public static int defaultStartValue;
         public static int defaultStepValue;
-        public static string BotName;
+
 
         static Game()
         {
             defaultStartValue = 33;
             defaultStepValue = 5;
-            BotName = "Bot";
         }
 
-        private List<string> users;
+        public List<User> Users { get; set; }
         //private int InitialCount;
         
-        public int MaxStep { get; }
+        public int Id { get; set; } 
+
+        public int MaxStep { get; set; }
         
         public int Count { get;  set; }
         
-        public string CurrentUser { get;  set; }
+        public User CurrentUser { get => Users[currentUserID]; }
+        public string CurrentUserName { get => Users[currentUserID].Name; }
 
-        private int currentUserID;
+
+        public int currentUserID { get; set; }
+
         public bool GameOver { get; private set; }
 
-        public Game(int maxStep, int InitValue, params string[] User)
+        public Game(int maxStep, int InitValue, params User[] user)
         {
             Count = InitValue;
             MaxStep = maxStep;
-            users = new List<string>( User);
-            if (User.Length == 1)
-            {
-                users.Add(BotName);
-            }
+            Users = new List<User>(user);
+//            Users.Add(user); 
+//            AddBot();
+            //if (User.Length == 1)
+            //{
+            //    Users.Add(BotName);
+           // }
             currentUserID = 0;
-            CurrentUser = users[currentUserID];
+ 
         }
 
         public Game() { }
        
+        //public void AddBot()
+        //{
+        //    Users.Add(User.GetBot());
+        //}
 
         public void Step(int stepvalue)
         {
@@ -59,12 +70,11 @@ namespace Theme_20_Homework_fromEmpty
                 }
                 
             }
-          //  nextStep();
         }
 
         public void nextUser()
         {
-            if (currentUserID < users.Count-1)
+            if (currentUserID < Users.Count-1)
             {
                 currentUserID++;
             }
@@ -73,11 +83,6 @@ namespace Theme_20_Homework_fromEmpty
                 currentUserID = 0;
             }
 
-            CurrentUser = users[currentUserID];
-            //if(CurrentUser == BotName)
-            //{
-            //    Step(autostep());
-            //}
         }
 
         public int Botstep()

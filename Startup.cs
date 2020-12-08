@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Theme_20_Homework_fromEmpty;
-using Theme_20_Homework_fromEmpty.Data;
+
 
 namespace Theme_20_Homework_fromEmpty
 {
@@ -20,7 +20,7 @@ namespace Theme_20_Homework_fromEmpty
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddTransient<IGameCenter,GameCenter>();       
-            services.AddSingleton<IGameCenter, GameCenter>();
+            ///services.AddSingleton<IGameCenter, GameCenter>();
             services.AddControllersWithViews();
         }
 
